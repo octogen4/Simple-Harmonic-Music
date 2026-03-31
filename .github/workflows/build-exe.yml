@@ -27,7 +27,6 @@ jobs:
       run: |
         pyinstaller --onefile left_music.py
         
-        
     # 
     - name: Build left_music_add_harm.exe
       run: |
