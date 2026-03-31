@@ -64,10 +64,11 @@ def render_song(tracks, bpm=120):
     max_amp = np.max(np.abs(mix_buffer))
     if max_amp > 0:
         mix_buffer *= (0.8 / max_amp) 
-        
+
     # 【已修复报错】直接将1维数组转为 int16，去掉了 reshape
     final_audio = (mix_buffer * 32767).astype(np.int16)
-    return final_audio
+    final_audio2=final_audio.repeat(2).reshape(-1,2)
+    return final_audio2
 
 # ================= 5. 编写乐谱 (4个乐句) =================
 # 格式: (音符名, 起始拍子, 持续拍子)
