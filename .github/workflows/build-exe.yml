@@ -1,0 +1,45 @@
+name: Build Windows EXEs
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    # 1. 检出代码
+    - uses: actions/checkout@v4
+    
+    # 2. 设置 Python 环境
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.8' 
+        
+    # 3. 安装依赖
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pyinstaller
+        
+    # 
+    - name: Build left_music.exe
+      run: |
+        pyinstaller --onefile --collect-all left_music.py
+        
+        
+    # 
+    - name: Build left_music_add_harm.exe
+      run: |
+        pyinstaller --onefile --collect-all left_music_add_harm.py
+    # 
+    - name: Build left_music_chord_2.exe
+      run: |
+        pyinstaller --onefile --collect-all left_music_chord_2.py    
+            
+    # 6. 上传所有生成的 EXE 文件
+    - name: Upload EXEs
+      uses: actions/upload-artifact@v4
+      with:
+        name: windows-executables
+        path: dist/*.exe 
