@@ -25,17 +25,17 @@ jobs:
     # 
     - name: Build left_music.exe
       run: |
-        pyinstaller --onefile --collect-all left_music.py
+        pyinstaller --onefile left_music.py
         
         
     # 
     - name: Build left_music_add_harm.exe
       run: |
-        pyinstaller --onefile --collect-all left_music_add_harm.py
+        pyinstaller --onefile left_music_add_harm.py
     # 
     - name: Build left_music_chord_2.exe
       run: |
-        pyinstaller --onefile --collect-all left_music_chord_2.py    
+        pyinstaller --onefile left_music_chord_2.py    
             
     # 6. 上传所有生成的 EXE 文件
     - name: Upload EXEs
